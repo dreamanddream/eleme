@@ -19,8 +19,11 @@ let router = new VueRouter({
   'linkActiveClass': 'active',
    routes // （缩写）相当于 routes: routes
 });
+// 创建vue实例，挂载到#app上
 let app = new Vue({
   router
 }).$mount('#app');
-  router.push('/goods');
+
+// router.push相当于router-link也是跳转，即访问根路径，就跳到/goods路径，如果不加这个就会跳转到只有三个tab切换页面也就是根目录，另一种方法也可以使用redirect进行配置
+ router.push('/goods');
 export default app;

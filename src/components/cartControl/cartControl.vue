@@ -2,6 +2,7 @@
   <div class="cartControl">
     <transition name="fade">
         <div class="cart-decrease" v-show="food.count>0" @click.stop.prevent="decreaseCart($event)">
+          <!-- 出现加减符号 -->
           <transition name="inner">
           <span class="inner iconfont icon-jian"></span>
           </transition>
@@ -10,6 +11,7 @@
      <span class="cart-count" v-show="food.count > 0 ">
       {{food.count}}
     </span>
+    <!-- 点击加号 -->
     <span class="iconfont icon-jia cart-add" @click.stop.prevent="addCart($event)"></span>
   </div>
 </template>
@@ -18,16 +20,19 @@
   import Vue from 'vue';
   export default {
     props: {
+      // 得到父组件传递的food各种菜品列表对象
       food: {
         type: Object
       }
     },
     methods: {
       addCart(event) {
+        // event._constructed属于什么？？？？
         if (!event._constructed) {
           // 去掉自带click事件的点击
           return;
         }
+        // 在父组件中传递给子组件的food对象包括count
         if (!this.food.count) {
           Vue.set(this.food, 'count', 1);
         } else {

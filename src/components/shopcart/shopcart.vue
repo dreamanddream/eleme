@@ -4,14 +4,18 @@
       <div class="content" @click="toggleList($event)">
         <div class="content-left">
           <div class="logo-wrapper">
+            <!-- 购物车数量及图标 -->
             <div class="logo" :class="{'highlight': totalCount > 0}">
+              <!-- 在class中可以使用判断，如果total>0为trur，那么就添加hightlight类 -->
               <i class="iconfont icon-gouwuche" :class="{'highlight': totalCount > 0}"></i>
             </div>
             <div class="num" v-show="totalCount > 0">{{totalCount}}</div>
           </div>
+          <!-- 配送费 -->
           <div class="price" :class="{'highlight': totalPrice > 0}">￥{{totalPrice}}</div>
           <div class="desc">另需配送费￥{{deliveryPrice}}元</div>
         </div>
+        <!-- 结算 -->
         <div class="content-right" @click.stop.prevent="pay">
           <div class="pay" :class="payClass">
             {{payDesc}}
@@ -20,6 +24,7 @@
       </div>
       <div class="ball-container">
         <div v-for="ball in balls">
+          <!-- 点击执行对应得事件 -->
           <transition name="drop" @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
             <div v-show="ball.show" class="ball">
               <div class="inner inner-hook">
@@ -28,6 +33,7 @@
           </transition>
         </div>
       </div>
+      <!-- transition使用fade特性 -->
       <transition name="fade">
         <div class="shopcart-list" v-show="listShow">
           <div class="list-header">
